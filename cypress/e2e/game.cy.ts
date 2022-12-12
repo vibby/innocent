@@ -28,5 +28,7 @@ describe("Load first page", () => {
     cy.contains("Suivant").click();
     cy.contains("Éliminer un joueur").click();
     cy.contains("Pirloui").click();
+    cy.contains("Bravo");
+    cy.contains("Nouvelle réunion").click();
   });
 });

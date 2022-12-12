@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import type { Ref } from "vue";
 import { defineStore } from "pinia";
-import { wordsCouples } from "@/tools/wordsCouples";
+import { wordsCouples } from "@/object/wordsCouples";
 
 interface WordsSelected {
   guilty: string;

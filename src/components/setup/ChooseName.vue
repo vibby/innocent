@@ -27,6 +27,7 @@ function showWords() {
   wordsStore.chooseWords();
   playersStore.randomizeRoles();
   playersStore.randomizeOrder();
+  playersStore.activateAll();
   router.push({ name: "words" });
 }
 
@@ -56,7 +57,12 @@ function nameUsed(ignoreIfNotModified = true): boolean {
 
 <template>
   <form @submit.prevent="addItemAndClear(name)">
-    <button v-if="players.length >= 3" @click="showWords" class="mainButton" type="button">
+    <button
+      v-if="players.length >= 3"
+      @click="showWords"
+      class="mainButton"
+      type="button"
+    >
       Commencer la partie !
     </button>
     <h1>Joueur {{ players.length + 1 }}</h1>

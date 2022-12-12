@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Ce jeu a été réalisé par vibby</h1>
+    <h1>Ce jeu a été réalisé par Vibby, Evan et Noah</h1>
   </div>
 </template>
 

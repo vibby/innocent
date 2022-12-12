@@ -5,7 +5,7 @@ import { storeToRefs } from "pinia";
 import IconBubbles from "@/components/icons/IconBubbles.vue";
 
 const playersStore = usePlayersStore();
-const { players } = storeToRefs(playersStore);
+const { getActivePlayers } = storeToRefs(playersStore);
 
 const playerIndex = ref(0);
 
@@ -20,9 +20,14 @@ function newTurn() {
 
 <template>
   <h1 class="currentPlayer">
-    <icon-bubbles />&nbsp; <small>Au tour de</small>&nbsp;<strong>{{ players[playerIndex].name }}</strong>
+    <icon-bubbles />&nbsp; <small>Au tour de</small>&nbsp;<strong>{{
+      getActivePlayers[playerIndex].name
+    }}</strong>
   </h1>
-  <button v-if="playerIndex < players.length - 1" @click="nextPlayer()">
+  <button
+    v-if="playerIndex < getActivePlayers.length - 1"
+    @click="nextPlayer()"
+  >
     Suivant
   </button>
   <div v-else>

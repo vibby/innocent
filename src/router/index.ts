@@ -3,6 +3,7 @@ import Users from "../views/SetupUsersView.vue";
 import Word from "../views/SetupWordsView.vue";
 import Game from "../views/GameView.vue";
 import EndTurn from "../views/EndTurnView.vue";
+import EndGame from "../views/EndGameView.vue";
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ export const router = createRouter({
       path: "/end-turn",
       name: "endturn",
       component: EndTurn,
+    },
+    {
+      path: "/end-game",
+      name: "endgame",
+      component: EndGame,
     },
     {
       path: "/about",
