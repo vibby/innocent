@@ -3,11 +3,15 @@
 describe("Load first page", () => {
   it("visits the app root url", () => {
     cy.visit("/");
-    cy.contains("h1", "Innocent");
+    cy.contains("h1", "Réunionïte");
     cy.get("input").type("Toto");
     cy.contains("Valider").click();
     cy.get("input").type("Jacques");
     cy.contains("Valider").click();
+    cy.get("input").type("Toto");
+    cy.contains("Nom déjà utilisé");
+    cy.get("input").clear();
+    cy.contains("Ne peut être vide");
     cy.get("input").type("Pirloui");
     cy.contains("Valider").click();
     cy.contains("Commencer la partie").click();

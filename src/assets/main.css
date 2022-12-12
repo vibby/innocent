@@ -70,3 +70,11 @@ input + button {
 .buttonList li:last-child button {
   border-radius: 0 0 1em 1em;
 }
+
+.inputError {
+  outline: 1px solid red;
+}
+.formErrorMessage {
+  color: red;
+  margin-left: 1em;
+}
