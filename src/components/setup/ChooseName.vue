@@ -23,7 +23,7 @@ function addItemAndClear(playerName: string) {
 }
 
 const router = useRouter();
-function showWords() {
+function showBriefing() {
   wordsStore.chooseWords();
   playersStore.initGame();
   router.push({ name: "words" });
@@ -57,13 +57,17 @@ function nameUsed(ignoreIfNotModified = true): boolean {
   <form @submit.prevent="addItemAndClear(name)">
     <button
       v-if="players.length >= 3"
-      @click="showWords"
+      @click="showBriefing"
       class="mainButton"
       type="button"
     >
       Commencer la partie !
     </button>
-    <h1>Joueur {{ players.length + 1 }}</h1>
+    <p>
+      Le patron veut voir tout le monde en salle de réunion dans 5 minutes.
+      Émargez vos noms !
+    </p>
+    <h1>Collaborateur {{ players.length + 1 }}</h1>
     <input
       v-model="name"
       type="text"

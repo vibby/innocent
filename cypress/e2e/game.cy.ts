@@ -23,10 +23,10 @@ describe("Load first page", () => {
     cy.contains("C’est parti").click();
     cy.contains("Suivant").click();
     cy.contains("Suivant").click();
-    cy.contains("Refaire un tour").click();
+    cy.contains("Refaite un tour").click();
     cy.contains("Suivant").click();
     cy.contains("Suivant").click();
-    cy.contains("Éliminer un joueur").click();
+    cy.contains("Virer un").click();
     cy.contains("Pirloui").click();
     cy.contains("Bravo");
     cy.contains("Nouvelle réunion").click();

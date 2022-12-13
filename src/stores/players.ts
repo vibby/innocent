@@ -23,10 +23,10 @@ export const usePlayersStore = defineStore("players", () => {
       return Role.attentive;
     }
     if (
-      getActivePlayers.value.filter((el) => el.role === Role.dreamer).length >=
+      getActivePlayers.value.filter((el) => el.role === Role.innate).length >=
       getActivePlayers.value.filter((el) => el.role === Role.attentive).length
     ) {
-      return Role.dreamer;
+      return Role.innate;
     }
     return null;
   });
@@ -42,7 +42,7 @@ export const usePlayersStore = defineStore("players", () => {
   function randomizeRoles() {
     players.value.forEach((element) => (element.role = Role.attentive));
     players.value[Math.floor(Math.random() * players.value.length)].role =
-      Role.dreamer;
+      Role.innate;
   }
   function randomizeOrder() {
     players.value = shuffle(players.value);

@@ -31,6 +31,18 @@ function startGame() {
 </script>
 
 <template>
+  <h1>Réunion de crise !</h1>
+  <p>
+    La réunion bat son plein. Le patron met les points sur les i. Après avoir
+    expliqué le mot crucial de la situation, il réalise que certains membres de
+    l’équipe ne sont pas attentifs. Dans sa rage, il quitte la salle de réunion
+    en sommant l’ordre d’exclure le (ou les) traitres.
+  </p>
+  <p>
+    Vous devez donc identifier ceux qui ont entendu ce mot et les autres.
+    D’ailleurs l’avez-vous bien entendu vous-même ? Chaque collaborateur va
+    maintenant fouiller sa mémoire pour se rappeler du mot …
+  </p>
   <h1 class="currentPlayer">
     <icon-book />&nbsp;<small>Voici le mot pour</small>&nbsp;<strong>{{
       players[playerIndex].name
@@ -45,9 +57,9 @@ function startGame() {
       class="word"
     />
     <input
-      :value="words.dreamer"
+      :value="words.innate"
       readonly
-      v-if="showWord && players[playerIndex].role === Role.dreamer"
+      v-if="showWord && players[playerIndex].role === Role.innate"
       class="word"
     />
     <button v-if="playerIndex < players.length - 1" @click="nextPlayer">

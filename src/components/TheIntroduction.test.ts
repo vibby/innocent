@@ -8,8 +8,5 @@ describe("TheIntroduction", () => {
       props: { title: "Hello Vitest" },
     });
     expect(wrapper.text()).toContain("Hello Vitest");
-    expect(wrapper.text()).toContain(
-      "Trouvez l’innocent. Ne vous faite pas prendre !"
-    );
   });
 });

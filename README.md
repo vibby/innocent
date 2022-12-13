@@ -1,6 +1,6 @@
-# innocent
+# Réunionïte
 
-Innocent is a social game where innocents must be spoted among the guilty players.
+Réunionïte is a social game where collaborators should exclude innate and sleepers.
 
 ## Customize configuration
 

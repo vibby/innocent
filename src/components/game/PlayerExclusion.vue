@@ -21,7 +21,7 @@ function excludeUser(player: Player) {
 
 <template>
   <h1 class="currentPlayer">
-    <icon-toolbox />&nbsp; C’est le temps d’éliminer
+    <icon-toolbox />&nbsp; L’un d’entre nous est de trop ici
   </h1>
   <ul class="buttonList">
     <li v-for="player in getActivePlayers" v-bind:key="player.name">

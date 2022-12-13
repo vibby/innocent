@@ -22,7 +22,7 @@ function newGame() {
   <h1 class="currentPlayer">
     Bravo
     <span v-if="getWinner === Role.attentive">les attentifs</span>
-    <span v-if="getWinner === Role.dreamer">les rêveurs</span>
+    <span v-if="getWinner === Role.innate">les rêveurs</span>
   </h1>
   <button @click="newGame">Nouvelle réunion</button>
 </template>

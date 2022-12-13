@@ -1,4 +1,4 @@
 export enum Role {
   attentive = "a",
-  dreamer = "d",
+  innate = "i",
 }

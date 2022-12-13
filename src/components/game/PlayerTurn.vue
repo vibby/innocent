@@ -24,20 +24,26 @@ function newTurn() {
       getActivePlayers[playerIndex].name
     }}</strong>
   </h1>
-  <button
-    v-if="playerIndex < getActivePlayers.length - 1"
-    @click="nextPlayer()"
-  >
-    Suivant
-  </button>
+  <p>
+    Tous les yeux se braque sur lui. Il ne peut pas dire le mot qu’il a retenu,
+    pour ne pas le révéler aux tires-au-flanc.
+  </p>
+  <p>
+    Mais il peut donner un indice (mot ou expression) pour rassurer ses
+    collaborateurs !
+  </p>
+  <div v-if="playerIndex < getActivePlayers.length - 1">
+    <button @click="nextPlayer()">Suivant</button>
+  </div>
   <div v-else>
+    <h2>Il est temps pour une décision collective !</h2>
     <ul class="buttonList">
       <li>
-        <button @click="newTurn()">Refaire un tour</button>
+        <button @click="newTurn()">Pas sûr ? Refaite un tour de table</button>
       </li>
       <li>
         <router-link to="/end-turn">
-          <button role="link">Éliminer un joueur</button>
+          <button role="link">Virer un collaborateur</button>
         </router-link>
       </li>
     </ul>
