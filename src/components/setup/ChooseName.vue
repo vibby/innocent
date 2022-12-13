@@ -25,9 +25,7 @@ function addItemAndClear(playerName: string) {
 const router = useRouter();
 function showWords() {
   wordsStore.chooseWords();
-  playersStore.randomizeRoles();
-  playersStore.randomizeOrder();
-  playersStore.activateAll();
+  playersStore.initGame();
   router.push({ name: "words" });
 }
 

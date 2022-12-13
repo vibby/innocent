@@ -1,7 +1,7 @@
 import type { Ref } from "vue";
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import { Role } from "@/object/role";
+import { Role } from "@/domain/role";
 import { shuffle } from "@/tools/shuffler";
 
 export interface Player {
@@ -17,16 +17,16 @@ export const usePlayersStore = defineStore("players", () => {
   );
   const getWinner = computed(function (): Role | null {
     if (
-      getActivePlayers.value.filter((el) => el.role === Role.Attentive)
+      getActivePlayers.value.filter((el) => el.role === Role.attentive)
         .length === getActivePlayers.value.length
     ) {
-      return Role.Attentive;
+      return Role.attentive;
     }
     if (
-      getActivePlayers.value.filter((el) => el.role === Role.Dreamer).length >=
-      getActivePlayers.value.filter((el) => el.role === Role.Attentive).length
+      getActivePlayers.value.filter((el) => el.role === Role.dreamer).length >=
+      getActivePlayers.value.filter((el) => el.role === Role.attentive).length
     ) {
-      return Role.Dreamer;
+      return Role.dreamer;
     }
     return null;
   });
@@ -34,15 +34,15 @@ export const usePlayersStore = defineStore("players", () => {
   function addPlayer(name: string) {
     players.value.push({
       name: name,
-      role: Role.Attentive,
+      role: Role.attentive,
       order: players.value.length,
       isActive: true,
     });
   }
   function randomizeRoles() {
-    players.value.forEach((element) => (element.role = Role.Attentive));
+    players.value.forEach((element) => (element.role = Role.attentive));
     players.value[Math.floor(Math.random() * players.value.length)].role =
-      Role.Dreamer;
+      Role.dreamer;
   }
   function randomizeOrder() {
     players.value = shuffle(players.value);
@@ -56,6 +56,11 @@ export const usePlayersStore = defineStore("players", () => {
   function activateAll() {
     players.value.forEach((player) => (player.isActive = true));
   }
+  function initGame() {
+    randomizeRoles();
+    randomizeOrder();
+    activateAll();
+  }
 
   return {
     players,
@@ -63,10 +68,8 @@ export const usePlayersStore = defineStore("players", () => {
     getActivePlayers,
     getWinner,
     addPlayer,
-    randomizeRoles,
-    randomizeOrder,
+    initGame,
     reset,
     excludePlayer,
-    activateAll,
   };
 });

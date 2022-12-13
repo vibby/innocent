@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { usePlayersStore } from "@/stores/players";
 import { useWordsStore } from "@/stores/words";
 import { storeToRefs } from "pinia";
-import { Role } from "@/object/role";
+import { Role } from "@/domain/role";
 import { useRouter } from "vue-router";
 import IconBook from "@/components/icons/IconBook.vue";
 
@@ -39,15 +39,15 @@ function startGame() {
   <button v-if="!showWord" @click="revealWord()">C’est moi</button>
   <div v-if="showWord">
     <input
-      :value="words.guilty"
+      :value="words.attentive"
       readonly
-      v-if="showWord && players[playerIndex].role === Role.Attentive"
+      v-if="showWord && players[playerIndex].role === Role.attentive"
       class="word"
     />
     <input
-      :value="words.innocent"
+      :value="words.dreamer"
       readonly
-      v-if="showWord && players[playerIndex].role === Role.Dreamer"
+      v-if="showWord && players[playerIndex].role === Role.dreamer"
       class="word"
     />
     <button v-if="playerIndex < players.length - 1" @click="nextPlayer">
