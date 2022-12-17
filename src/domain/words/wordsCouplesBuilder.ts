@@ -11,7 +11,7 @@ export const wordsCouplesBuilder = {
 
     return {
       attentive: items[0],
-      dreamer: items[1],
+      innate: items[1],
     };
   },
 };

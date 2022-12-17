@@ -3,12 +3,17 @@ import { useRouter } from "vue-router";
 import { usePlayersStore } from "@/stores/players";
 import { ref } from "vue";
 import IconCube from "@/components/icons/IconCube.vue";
+import { useWordsStore } from "@/stores/words";
 
 const playersStore = usePlayersStore();
+const wordsStore = useWordsStore();
 const router = useRouter();
 
 function restart() {
-  router.push({ name: "users" }).then(() => playersStore.reset());
+  router.push({ name: "users" }).then(function () {
+    playersStore.reset();
+    wordsStore.chooseWords();
+  });
   showConfirm.value = false;
 }
 let showConfirm = ref(false);

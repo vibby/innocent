@@ -1,4 +1,4 @@
 export interface WordsCouple {
   attentive: string;
-  dreamer: string;
+  innate: string;
 }

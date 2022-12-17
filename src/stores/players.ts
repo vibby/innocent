@@ -1,8 +1,9 @@
 import type { Ref } from "vue";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { defineStore } from "pinia";
 import { Role } from "@/domain/role";
 import { shuffle } from "@/tools/shuffler";
+import { useLocalStorage } from "@vueuse/core";
 
 export interface Player {
   name: string;
@@ -11,7 +12,7 @@ export interface Player {
   isActive: boolean;
 }
 export const usePlayersStore = defineStore("players", () => {
-  const players: Ref<Array<Player>> = ref([]);
+  const players: Ref<Array<Player>> = useLocalStorage("players", []);
   const getActivePlayers = computed(() =>
     players.value.filter((el) => el.isActive)
   );

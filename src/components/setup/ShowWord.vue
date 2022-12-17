@@ -28,6 +28,10 @@ const router = useRouter();
 function startGame() {
   router.push({ name: "game" });
 }
+
+if (players.value.length < 3) {
+  router.push({ name: "users" });
+}
 </script>
 
 <template>
@@ -45,7 +49,7 @@ function startGame() {
   </p>
   <h1 class="currentPlayer">
     <icon-book />&nbsp;<small>Voici le mot pour</small>&nbsp;<strong>{{
-      players[playerIndex].name
+      players[playerIndex] ? players[playerIndex].name : ""
     }}</strong>
   </h1>
   <button v-if="!showWord" @click="revealWord()">C’est moi</button>

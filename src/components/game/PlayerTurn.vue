@@ -3,9 +3,13 @@ import { ref } from "vue";
 import { usePlayersStore } from "@/stores/players";
 import { storeToRefs } from "pinia";
 import IconBubbles from "@/components/icons/IconBubbles.vue";
+import { useRouter } from "vue-router";
+import { useWordsStore } from "@/stores/words";
 
 const playersStore = usePlayersStore();
-const { getActivePlayers } = storeToRefs(playersStore);
+const { getActivePlayers, players } = storeToRefs(playersStore);
+const wordsStore = useWordsStore();
+const { words } = storeToRefs(wordsStore);
 
 const playerIndex = ref(0);
 
@@ -15,6 +19,15 @@ function nextPlayer() {
 
 function newTurn() {
   playerIndex.value = 0;
+}
+
+const router = useRouter();
+if (
+  players.value.length < 3 ||
+  !words?.value.attentive ||
+  !words?.value.innate
+) {
+  router.push({ name: "users" });
 }
 </script>
 
