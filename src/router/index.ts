@@ -3,6 +3,7 @@ import Users from "../views/SetupUsersView.vue";
 import Word from "../views/SetupWordsView.vue";
 import Game from "../views/GameView.vue";
 import EndTurn from "../views/EndTurnView.vue";
+import Proposal from "../views/ProposalView.vue";
 import EndGame from "../views/EndGameView.vue";
 
 export const router = createRouter({
@@ -27,6 +28,11 @@ export const router = createRouter({
       path: "/end-turn",
       name: "endturn",
       component: EndTurn,
+    },
+    {
+      path: "/proposal",
+      name: "proposal",
+      component: Proposal,
     },
     {
       path: "/end-game",

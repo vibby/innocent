@@ -7,7 +7,7 @@ import { useRouter } from "vue-router";
 import { useWordsStore } from "@/stores/words";
 
 const playersStore = usePlayersStore();
-const { getActivePlayers, players } = storeToRefs(playersStore);
+const { getActivePlayers, players, getWinner } = storeToRefs(playersStore);
 const wordsStore = useWordsStore();
 const { words } = storeToRefs(wordsStore);
 
@@ -28,6 +28,10 @@ if (
   !words?.value.innate
 ) {
   router.push({ name: "users" });
+}
+
+if (getWinner.value) {
+  router.push({ name: "endgame" });
 }
 </script>
 

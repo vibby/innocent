@@ -66,6 +66,12 @@ if (players.value.length < 3) {
       v-if="showWord && players[playerIndex].role === Role.innate"
       class="word"
     />
+    <input
+      readonly
+      v-if="showWord && players[playerIndex].role === Role.sleeper"
+      class="word"
+      placeholder="Vous ne vous en souvenez pas"
+    />
     <button v-if="playerIndex < players.length - 1" @click="nextPlayer">
       Ok
     </button>

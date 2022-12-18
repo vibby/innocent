@@ -21,6 +21,7 @@ function newGame() {
 <template>
   <h1 class="currentPlayer">
     Bravo
+    <span v-if="getWinner === Role.sleeper">les endormis</span>
     <span v-if="getWinner === Role.attentive">les attentifs</span>
     <span v-if="getWinner === Role.innate">les rêveurs</span>
   </h1>

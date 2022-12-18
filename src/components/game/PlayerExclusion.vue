@@ -4,18 +4,20 @@ import type { Player } from "@/stores/players";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import IconToolbox from "@/components/icons/IconToolbox.vue";
+import { Role } from "@/domain/role";
 
 const playersStore = usePlayersStore();
 const { getActivePlayers } = storeToRefs(playersStore);
 
 const router = useRouter();
 function excludeUser(player: Player) {
-  playersStore.excludePlayer(player);
-  if (playersStore.getWinner) {
-    router.push({ name: "endgame" });
-  } else {
-    router.push({ name: "game" });
+  if (player.role === Role.sleeper) {
+    player.isProposing = true;
+    router.push({ name: "proposal" });
+    return;
   }
+  player.isActive = false;
+  router.push({ name: "game" });
 }
 </script>
 

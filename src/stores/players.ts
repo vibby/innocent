@@ -1,22 +1,36 @@
-import type { Ref } from "vue";
+import type { ComputedRef, Ref } from "vue";
 import { computed } from "vue";
 import { defineStore } from "pinia";
 import { Role } from "@/domain/role";
 import { shuffle } from "@/tools/shuffler";
 import { useLocalStorage } from "@vueuse/core";
+import { useWordsStore } from "@/stores/words";
 
 export interface Player {
   name: string;
   role: Role;
   order: number;
   isActive: boolean;
+  proposal: string | null;
+  isProposing: boolean;
 }
 export const usePlayersStore = defineStore("players", () => {
   const players: Ref<Array<Player>> = useLocalStorage("players", []);
   const getActivePlayers = computed(() =>
     players.value.filter((el) => el.isActive)
   );
+  const getBeingExcludedPlayer: ComputedRef<Player | null> = computed(
+    (): Player | null => players.value.find((el) => el.isProposing) || null
+  );
   const getWinner = computed(function (): Role | null {
+    const wordsStore = useWordsStore();
+    const sleeperWinner = getActivePlayers.value.find(
+      (el) =>
+        el.role === Role.sleeper && el.proposal === wordsStore.words.attentive
+    );
+    if (sleeperWinner) {
+      return Role.sleeper;
+    }
     if (
       getActivePlayers.value.filter((el) => el.role === Role.attentive)
         .length === getActivePlayers.value.length
@@ -31,28 +45,29 @@ export const usePlayersStore = defineStore("players", () => {
     }
     return null;
   });
-  const getPlayers = computed(() => players);
   function addPlayer(name: string) {
     players.value.push({
       name: name,
       role: Role.attentive,
       order: players.value.length,
       isActive: true,
+      proposal: null,
+      isProposing: false,
     });
   }
   function randomizeRoles() {
     players.value.forEach((element) => (element.role = Role.attentive));
     players.value[Math.floor(Math.random() * players.value.length)].role =
-      Role.innate;
+      Role.sleeper;
   }
   function randomizeOrder() {
     players.value = shuffle(players.value);
+    while (players.value[0].role === Role.sleeper) {
+      players.value = shuffle(players.value);
+    }
   }
   function reset() {
     players.value = [];
-  }
-  function excludePlayer(player: Player) {
-    player.isActive = false;
   }
   function activateAll() {
     players.value.forEach((player) => (player.isActive = true));
@@ -65,12 +80,11 @@ export const usePlayersStore = defineStore("players", () => {
 
   return {
     players,
-    getPlayers,
     getActivePlayers,
     getWinner,
+    getBeingExcludedPlayer,
     addPlayer,
     initGame,
     reset,
-    excludePlayer,
   };
 });
