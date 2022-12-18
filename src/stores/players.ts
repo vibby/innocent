@@ -5,6 +5,8 @@ import { Role } from "@/domain/role";
 import { shuffle } from "@/tools/shuffler";
 import { useLocalStorage } from "@vueuse/core";
 import { useWordsStore } from "@/stores/words";
+import { random } from "@/tools/randomizer";
+import { roleRandomizer } from "@/domain/roleRandomizer";
 
 export interface Player {
   name: string;
@@ -56,9 +58,18 @@ export const usePlayersStore = defineStore("players", () => {
     });
   }
   function randomizeRoles() {
+    const counts = roleRandomizer.build(players.value.length);
     players.value.forEach((element) => (element.role = Role.attentive));
-    players.value[Math.floor(Math.random() * players.value.length)].role =
-      Role.sleeper;
+    Array.from({ length: counts.innate }, () => {
+      random(
+        players.value.filter((player: Player) => player.role === Role.attentive)
+      ).role = Role.innate;
+    });
+    Array.from({ length: counts.sleeper }, () => {
+      random(
+        players.value.filter((player: Player) => player.role === Role.attentive)
+      ).role = Role.sleeper;
+    });
   }
   function randomizeOrder() {
     players.value = shuffle(players.value);
