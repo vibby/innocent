@@ -32,7 +32,7 @@ function tryWord(word: string) {
   <form @submit.prevent="tryWord(attemp)">
     <h1 class="currentPlayer">
       <icon-bubbles />&nbsp;
-      {{ playersStore.getBeingExcludedPlayer.name }} dormait !
+      {{ playersStore.getBeingExcludedPlayer?.name }} dormait !
     </h1>
     <p>Mais s’il devine le mot, il gagne !</p>
     <input v-model="attemp" type="text" />

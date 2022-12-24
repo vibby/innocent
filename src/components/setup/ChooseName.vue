@@ -63,20 +63,22 @@ function nameUsed(ignoreIfNotModified = true): boolean {
     >
       Commencer la partie !
     </button>
-    <p>
-      Le patron veut voir tout le monde en salle de réunion dans 5 minutes.
-      Émargez vos noms !
-    </p>
-    <h1>Collaborateur {{ players.length + 1 }}</h1>
-    <input
-      v-model="name"
-      type="text"
-      :class="{ inputError: checkValidationError() }"
-      @keyup="modified = true"
-    />
-    <button>Valider</button>
-    <div class="formErrorMessage" v-if="nameUsed()">Nom déjà utilisé</div>
-    <div class="formErrorMessage" v-if="nameEmpty()">Ne peut être vide</div>
+    <div v-if="players.length < 8">
+      <p>
+        Le patron veut voir tout le monde en salle de réunion dans 5 minutes.
+        Émargez vos noms !
+      </p>
+      <h1>Collaborateur {{ players.length + 1 }}</h1>
+      <input
+        v-model="name"
+        type="text"
+        :class="{ inputError: checkValidationError() }"
+        @keyup="modified = true"
+      />
+      <button>Valider</button>
+      <div class="formErrorMessage" v-if="nameUsed()">Nom déjà utilisé</div>
+      <div class="formErrorMessage" v-if="nameEmpty()">Ne peut être vide</div>
+    </div>
   </form>
 </template>
 
